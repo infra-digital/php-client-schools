@@ -30,6 +30,8 @@ or by registering the library packagist namespace into your composer.json file
  So it would look like this if we put it together
  
  ````
+ use InfraDigital\ApiClient;
+ 
  $idnClient = new ApiClient\Client($idnUserName, $idnPassword);
  $idnClient->studentApi()->createStudent('Test User 1234' . date('YMDhis'), 'testBillKey01234' . date('YMDhis'),'0987612345', 'use.only@valid.domain', 'This is test to create user');
  ````
