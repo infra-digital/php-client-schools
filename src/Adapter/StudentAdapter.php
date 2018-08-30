@@ -5,6 +5,7 @@ class StudentAdapter extends BaseAdapter
 {
     private $studentsData       = array();
     private $billComponentData  = array();
+    private $billData           = array();
 
     public function createStudent($name, $billKeyValue, $phone = '', $email = '', $description = '')
     {
@@ -196,6 +197,29 @@ class StudentAdapter extends BaseAdapter
             $this->getMainEntity()->isDevMode()
         );
         $this->httpGet($uri, array());
+
+        return $this;
+    }
+
+    public function createBill($name, $billKeyValue, $phone, $email, $description, $billUploadList = array())
+    {
+        $content = array(
+            'name'              => $name,
+            'bill_key_value'    => $billKeyValue,
+            'phone'             => $phone,
+            'email'             => $email,
+            'description'       => $description,
+            'bill_upload_list'  => $billUploadList,
+        );
+        $uri = $this->getUtils()->buildUri(
+            $this->getMainEntity()->getUsername(),
+            $this->getMainEntity()->getPassword(),
+            'bill/checkout',
+            array(),
+            $this->getMainEntity()->isDevMode()
+        );
+
+        $this->httpPost($uri, array(), $content);
 
         return $this;
     }

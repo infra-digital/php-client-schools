@@ -49,6 +49,14 @@ class ClientTest extends TestCase
         $this->assertEquals(201, $idnClient->studentApi()->getResponseCode());
     }
 
+    public function testCrateBilling()
+    {
+        $idnClient = new ApiClient\Client($this->username, $this->password);
+        $idnClient->setDevMode();
+        $idnClient->studentApi()->createBill('Test User 123', '123', '08123123456', 'this@valid.email', 'Testing', $this->billingData());
+        $this->assertEquals(201, $idnClient->studentApi()->getResponseCode());
+    }
+
     private function studentsData()
     {
         return array(
@@ -73,6 +81,22 @@ class ClientTest extends TestCase
                 'email' => 'use.only@valid.domain',
                 'description' => 'Testing user #0003',
             ),
+        );
+    }
+
+    private function billingData()
+    {
+        return array(
+            array(
+                'account_code' => "10014",
+                'bill_component_name' => 'Test',
+                'expiry_date' => '2019-12-31T00:00:00Z',
+                'due_date' => '2018-12-31T00:00:00Z',
+                'active_date' => '2017-11-30T00:00:00Z',
+                'amount' => 10000,
+                'penalty_amount' => 10000,
+                'description' => 'Testing',
+            )
         );
     }
 }
