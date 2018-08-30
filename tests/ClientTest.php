@@ -49,11 +49,11 @@ class ClientTest extends TestCase
         $this->assertEquals(201, $idnClient->studentApi()->getResponseCode());
     }
 
-    public function testCrateBilling()
+    public function testCreateBilling()
     {
         $idnClient = new ApiClient\Client($this->username, $this->password);
         $idnClient->setDevMode();
-        $idnClient->studentApi()->createBill('Test User 123', '123', '08123123456', 'this@valid.email', 'Testing', $this->billingData());
+        $idnClient->studentApi()->createBill('Test User 123', '123', '08123123456', 'use.only@valid.email', 'Testing', $this->billingData());
         $this->assertEquals(201, $idnClient->studentApi()->getResponseCode());
     }
 
@@ -88,7 +88,7 @@ class ClientTest extends TestCase
     {
         return array(
             array(
-                'account_code' => "10014",
+                'account_code' => "MANDIRI",
                 'bill_component_name' => 'Test',
                 'expiry_date' => '2019-12-31T00:00:00Z',
                 'due_date' => '2018-12-31T00:00:00Z',
