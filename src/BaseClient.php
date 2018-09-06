@@ -8,7 +8,6 @@ class BaseClient implements ClientInterface
 {
     protected $utils;
     protected $mainEntity;
-    protected $adapters = array();
 
     protected function __construct($username, $plainPassword)
     {

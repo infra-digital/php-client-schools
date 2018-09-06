@@ -53,7 +53,7 @@ class ClientTest extends TestCase
     {
         $idnClient = new ApiClient\Client($this->username, $this->password);
         $idnClient->setDevMode();
-        $idnClient->studentApi()->createBill('Test User 123', '123', '08123123456', 'use.only@valid.email', 'Testing', $this->billingData());
+        $idnClient->studentApi()->createBill('Test User 123', '123' . date('YMDhis'), '08123123456', 'use.only@valid.email', 'Testing', $this->billingData());
         $this->assertEquals(201, $idnClient->studentApi()->getResponseCode());
     }
 

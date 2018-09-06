@@ -6,6 +6,11 @@ use InfraDigital\ApiClient\Adapter;
 
 class Client extends BaseClient
 {
+    /**
+     * @var Adapter\StudentAdapter
+     */
+    private $studentApi;
+
     public function __construct($username, $plainPassword)
     {
         parent::__construct($username, $plainPassword);
@@ -14,7 +19,7 @@ class Client extends BaseClient
 
     private function initAdapter()
     {
-        $this->adapters[Constants::STUDENT_ADAPTER] = new Adapter\StudentAdapter($this->mainEntity, $this->utils);
+        $this->studentApi = new Adapter\StudentAdapter($this->mainEntity, $this->utils);
     }
 
     /**
@@ -22,6 +27,6 @@ class Client extends BaseClient
      */
     public function studentApi()
     {
-        return $this->adapters[Constants::STUDENT_ADAPTER];
+        return $this->studentApi;
     }
 }
