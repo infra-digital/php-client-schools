@@ -86,12 +86,14 @@ class ClientTest extends TestCase
 
     private function billingData()
     {
+        $time = strtotime('now +1 month');
+        $newTime = date('Y-m-d\TH:i:s\Z',$time);
         return array(
             array(
                 'account_code' => "MANDIRI",
                 'bill_component_name' => 'Test',
-                'expiry_date' => '2019-12-31T00:00:00Z',
-                'due_date' => '2018-12-31T00:00:00Z',
+                'expiry_date' => $newTime,
+                'due_date' => $newTime,
                 'active_date' => '2017-11-30T00:00:00Z',
                 'amount' => 10000,
                 'penalty_amount' => 10000,
