@@ -1,7 +1,9 @@
 <?php
 namespace InfraDigital\ApiClient;
 
-use InfraDigital\ApiClient\Constants\Constants;
+use Http\Client\Common\HttpMethodsClient;
+use Http\Discovery\HttpClientDiscovery;
+use Http\Discovery\MessageFactoryDiscovery;
 use InfraDigital\ApiClient\Adapter;
 
 class Client extends BaseClient
@@ -19,7 +21,14 @@ class Client extends BaseClient
 
     private function initAdapter()
     {
-        $this->studentApi = new Adapter\StudentAdapter($this->mainEntity, $this->utils);
+        $this->studentApi = new Adapter\StudentAdapter(
+            $this->mainEntity,
+            $this->utils,
+            new HttpMethodsClient(
+                HttpClientDiscovery::find(),
+                MessageFactoryDiscovery::find()
+            )
+        );
     }
 
     /**
