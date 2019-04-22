@@ -5,7 +5,7 @@ use Http\Client\HttpClient;
 use InfraDigital\ApiClient\Entity\MainEntity;
 use InfraDigital\ApiClient\Utils\ClientUtil;
 
-class BaseAdapter implements \AdapterInterface
+class BaseAdapter implements AdapterInterface
 {
     private $httpClient;
     private $mainEntity;

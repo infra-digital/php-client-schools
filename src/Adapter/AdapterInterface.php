@@ -1,4 +1,5 @@
 <?php
+namespace InfraDigital\ApiClient\Adapter;
 
 interface AdapterInterface {
     public function getResponseCode();
