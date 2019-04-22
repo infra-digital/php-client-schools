@@ -1,13 +1,11 @@
 <?php
 namespace InfraDigital\ApiClient\Adapter;
 
-use Http\Client\Common\HttpMethodsClient;
+use Http\Client\HttpClient;
 use InfraDigital\ApiClient\Entity\MainEntity;
 use InfraDigital\ApiClient\Utils\ClientUtil;
-use Http\Discovery\HttpClientDiscovery;
-use Http\Discovery\MessageFactoryDiscovery;
 
-class BaseAdapter
+class BaseAdapter implements AdapterInterface
 {
     private $httpClient;
     private $mainEntity;
@@ -16,14 +14,11 @@ class BaseAdapter
     private $httpResponseCode;
     private $httpRawResponse;
 
-    public function __construct(MainEntity $mainEntity, ClientUtil $utils)
+    public function __construct(MainEntity $mainEntity, ClientUtil $utils, HttpClient $httpClient)
     {
         $this->utils        = $utils;
         $this->mainEntity   = $mainEntity;
-        $this->httpClient   = new HttpMethodsClient(
-            HttpClientDiscovery::find(),
-            MessageFactoryDiscovery::find()
-        );
+        $this->httpClient   = $httpClient;
     }
 
     protected function getMainEntity()
